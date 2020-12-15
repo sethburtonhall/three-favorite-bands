@@ -121,45 +121,53 @@ const App = () => {
 
   return (
     <div className="w-5/6 grid grid-rows-12 gap-4 mt-10 m-auto">
-      <h1 className="center">My three favorite bands are ...</h1>
+      <h1 className="center text-2xl md:text-4xl lg:text-7xl">
+        My three favorite bands are ...
+      </h1>
 
       <div className="h-96">
-        <div className="grid grid-cols-3 my-12 flex items-center justify-around">
+        <div className="grid grid-rows-12 lg:grid-cols-3 gap-4 lg:gap-0 my-12 flex items-center justify-around">
           <div className="center">
             {bandOne && (
               <Fade>
-                <h2>{bandOne.name},</h2>
+                <h2 className="text-2xl md:text-3xl xl:text-5xl">
+                  {bandOne.name},
+                </h2>
               </Fade>
             )}
           </div>
           <div className="center">
             {bandTwo && (
               <Fade>
-                <h2>{bandTwo.name},</h2>
+                <h2 className="text-2xl md:text-3xl xl:text-5xl">
+                  {bandTwo.name},
+                </h2>
               </Fade>
             )}
           </div>
           <div className="center">
             {bandTwo && (
               <Fade delay={800}>
-                <h2>aaaannnd</h2>
+                <h2 className="text-2xl md:text-3xl xl:text-5xl">aaaannnd</h2>
               </Fade>
             )}
           </div>
         </div>
 
-        <div className="h-60 grid grid-cols-12 center">
+        <div className="h-20 lg:h-60 grid grid-cols-12 center">
           <div className="center">
             {bandThree && (
               <Jello>
-                <h1>{bandThree.name}</h1>
+                <h1 className="text-2xl md:text-4xl lg:text-7xl">
+                  {bandThree.name}
+                </h1>
               </Jello>
             )}
           </div>
         </div>
       </div>
 
-      <div className="h-12 w-1/2 center m-auto mt-20">
+      <div className="h-12 w-full lg:w-1/2 center m-auto mt-20">
         {!bandOne && (
           <button
             className="w-full center bg-black text-white py-4 px-8 rounded text-4xl"
