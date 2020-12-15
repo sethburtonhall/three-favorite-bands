@@ -26,6 +26,7 @@ const App = () => {
     }).then((tokenResponse) => {
       setToken(tokenResponse.data.access_token)
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bandOne, bandTwo])
 
   const displayBandOne = async () => {
