@@ -6,6 +6,7 @@ body {
   @apply font-sans;
   background: #fe615a;
   color: #eef4dc;
+  height: 100vw;
 }
 
 h1 {

@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types'
 
-import axios from 'axios'
-import Fade from 'react-reveal/Fade'
-import Jello from 'react-reveal/Jello'
+import axios from 'axios';
+import Fade from 'react-reveal/Fade';
+import Jello from 'react-reveal/Jello';
 
 const App = () => {
-  const [token, setToken] = useState('')
-  const [bandOne, setBandOne] = useState()
-  const [bandTwo, setBandTwo] = useState()
-  const [bandThree, setBandThree] = useState()
-  console.log(token)
-
-  const clientId = process.env.REACT_APP_CLIENT_ID
-  const clientSecret = process.env.REACT_APP_CLIENT_SECRET
+  const [token, setToken] = useState('');
+  const [bandOne, setBandOne] = useState();
+  const [bandTwo, setBandTwo] = useState();
+  const [bandThree, setBandThree] = useState();
+  // console.log(token)
+  const clientId = process.env.REACT_APP_CLIENT_ID;
+  const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
+  console.log(token);
 
   useEffect(() => {
     axios('https://accounts.spotify.com/api/token', {
@@ -24,10 +24,10 @@ const App = () => {
       data: 'grant_type=client_credentials',
       method: 'POST'
     }).then((tokenResponse) => {
-      setToken(tokenResponse.data.access_token)
-    })
+      setToken(tokenResponse.data.access_token);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bandOne, bandTwo])
+  }, [bandOne, bandTwo]);
 
   const displayBandOne = async () => {
     try {
@@ -35,7 +35,7 @@ const App = () => {
         .get(
           'https://api.spotify.com/v1/artists/3WrFJ7ztbogyGnTHbHJFl2/related-artists',
           {
-            headers: { Authorization: 'Bearer' + token }
+            headers: { Authorization: 'Bearer' + ' ' + token }
           }
         )
         .then((response) => {
@@ -43,19 +43,19 @@ const App = () => {
             response.data.artists[
               Math.floor(Math.random() * response.data.artists.length)
             ]
-          )
-        })
-      return response
+          );
+        });
+      return response;
     } catch (error) {
       if (error.response) {
         // When response status code is out of 2xx range
-        console.log(error.response.data)
-        console.log(error.response.status)
+        console.log(error.response.data);
+        console.log(error.response.status);
       } else {
-        console.log(error.message)
+        console.log(error.message);
       }
     }
-  }
+  };
 
   const displayBandTwo = async () => {
     try {
@@ -63,7 +63,7 @@ const App = () => {
         .get(
           'https://api.spotify.com/v1/artists/3WrFJ7ztbogyGnTHbHJFl2/related-artists',
           {
-            headers: { Authorization: 'Bearer' + token }
+            headers: { Authorization: 'Bearer' + ' ' + token }
           }
         )
         .then((response) => {
@@ -71,19 +71,19 @@ const App = () => {
             response.data.artists[
               Math.floor(Math.random() * response.data.artists.length)
             ]
-          )
-        })
-      return response
+          );
+        });
+      return response;
     } catch (error) {
       if (error.response) {
         // When response status code is out of 2xx range
-        console.log(error.response.data)
-        console.log(error.response.status)
+        console.log(error.response.data);
+        console.log(error.response.status);
       } else {
-        console.log(error.message)
+        console.log(error.message);
       }
     }
-  }
+  };
 
   const displayBandThree = async () => {
     try {
@@ -91,7 +91,7 @@ const App = () => {
         .get(
           'https://api.spotify.com/v1/artists/5LXEAEGrpKQtpyCu2sZuWu/related-artists',
           {
-            headers: { Authorization: 'Bearer' + token }
+            headers: { Authorization: 'Bearer' + ' ' + token }
           }
         )
         .then((response) => {
@@ -99,25 +99,37 @@ const App = () => {
             response.data.artists[
               Math.floor(Math.random() * response.data.artists.length)
             ]
-          )
-        })
-      return response
+          );
+        });
+      return response;
     } catch (error) {
       if (error.response) {
         // When response status code is out of 2xx range
-        console.log(error.response.data)
-        console.log(error.response.status)
+        console.log(error.response.data);
+        console.log(error.response.status);
       } else {
-        console.log(error.message)
+        console.log(error.message);
       }
     }
-  }
+  };
 
   const resetState = () => {
-    setBandOne()
-    setBandTwo()
-    setBandThree()
-  }
+    setBandOne();
+    setBandTwo();
+    setBandThree();
+  };
+
+  const renderButtonText = () => {
+    if (!bandOne) {
+      return 'First';
+    } else if (bandOne && !bandTwo) {
+      return 'Second';
+    } else if (bandTwo && !bandThree) {
+      return 'Third';
+    } else if (bandOne && bandTwo && bandThree) {
+      return 'Reset';
+    }
+  };
 
   return (
     <div className="w-5/6 grid grid-rows-12 gap-4 mt-10 m-auto">
@@ -126,7 +138,7 @@ const App = () => {
       </h1>
 
       <div className="h-96">
-        <div className="grid grid-rows-12 lg:grid-cols-3 gap-4 lg:gap-0 my-12 flex items-center justify-around">
+        <div className="grid grid-rows-12 lg:grid-cols-3 gap-4 lg:gap-0 mt-12 mb-12 lg:mb-36">
           <div className="center">
             {bandOne && (
               <Fade>
@@ -136,6 +148,7 @@ const App = () => {
               </Fade>
             )}
           </div>
+
           <div className="center">
             {bandTwo && (
               <Fade>
@@ -145,6 +158,7 @@ const App = () => {
               </Fade>
             )}
           </div>
+
           <div className="center">
             {bandTwo && (
               <Fade delay={800}>
@@ -154,7 +168,7 @@ const App = () => {
           </div>
         </div>
 
-        <div className="h-20 lg:h-60 grid grid-cols-12 center">
+        <div className="grid grid-cols-12 center">
           <div className="center">
             {bandThree && (
               <Jello>
@@ -167,44 +181,28 @@ const App = () => {
         </div>
       </div>
 
-      <div className="h-12 w-full lg:w-1/2 center m-auto mt-20">
-        {!bandOne && (
-          <button
-            className="w-full center bg-black text-white py-4 px-8 rounded text-4xl"
-            onClick={displayBandOne}
-          >
-            First
-          </button>
-        )}
-        {bandOne && !bandTwo && (
-          <button
-            className="w-full center bg-black text-white py-4 px-8 rounded text-4xl"
-            onClick={displayBandTwo}
-          >
-            Second
-          </button>
-        )}
-        {bandTwo && !bandThree && (
-          <button
-            className="w-full center bg-black text-white py-4 px-8 rounded text-4xl"
-            onClick={displayBandThree}
-          >
-            Third
-          </button>
-        )}
-        {bandOne && bandTwo && bandThree && (
-          <button
-            className="w-full center bg-black text-white py-4 px-8 rounded text-4xl"
-            onClick={resetState}
-          >
-            Reset
-          </button>
-        )}
+      <div className="w-full lg:w-1/3 center m-auto">
+        <button
+          className="w-full center bg-black text-white py-4 px-8 rounded text-4xl"
+          onClick={() => {
+            if (!bandOne) {
+              displayBandOne();
+            } else if (bandOne && !bandTwo) {
+              displayBandTwo();
+            } else if (bandTwo && !bandThree) {
+              displayBandThree();
+            } else if (bandOne && bandTwo && bandThree) {
+              resetState();
+            }
+          }}
+        >
+          <span>{renderButtonText()}</span>
+        </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-App.propTypes = {}
+App.propTypes = {};
 
-export default App
+export default App;
