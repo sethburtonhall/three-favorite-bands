@@ -35,7 +35,7 @@ const App = () => {
         .get(
           'https://api.spotify.com/v1/artists/3WrFJ7ztbogyGnTHbHJFl2/related-artists',
           {
-            headers: { Authorization: 'Bearer' + ' ' + token }
+            headers: { Authorization: 'Bearer' + token }
           }
         )
         .then((response) => {
@@ -63,7 +63,7 @@ const App = () => {
         .get(
           'https://api.spotify.com/v1/artists/3WrFJ7ztbogyGnTHbHJFl2/related-artists',
           {
-            headers: { Authorization: 'Bearer' + ' ' + token }
+            headers: { Authorization: 'Bearer' + token }
           }
         )
         .then((response) => {
@@ -91,7 +91,7 @@ const App = () => {
         .get(
           'https://api.spotify.com/v1/artists/5LXEAEGrpKQtpyCu2sZuWu/related-artists',
           {
-            headers: { Authorization: 'Bearer' + ' ' + token }
+            headers: { Authorization: 'Bearer' + token }
           }
         )
         .then((response) => {
